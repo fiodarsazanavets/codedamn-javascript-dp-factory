@@ -1,12 +1,8 @@
 const WindowsCharacterHelperFactory = require('./windowsCharacterHelperFactory.js');
 const UnixCharacterHelperFactory = require('./unixCharacterHelperFactory.js');
 
-var factory = process.platform == 'win32' ? 
-    new WindowsCharacterHelperFactory() :
-    new UnixCharacterHelperFactory();
+var newLine = process.platform == 'win32' ? '\r\n': '\n';
+var pathSeparator = process.platform == 'win32' ? '\'' : '/';
 
-var lineHelper = factory.createNewLineHelper();
-var pathHelper = factory.createPathSeparatorHelper();
-
-console.log(`This is the first line${lineHelper.getNewLine()}` +
-    `This is a file path: source${pathHelper.getPathSeparator()}destination`);
+console.log(`This is the first line${newLine}` +
+    `This is a file path: source${pathSeparator}destination`);
